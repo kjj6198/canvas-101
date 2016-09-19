@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Effective Input</title>
+	<link rel="stylesheet" href="./dist/index.css">
+</head>
+<body>
+  <div class="container">
+	  <form action="">
+	    <div id="personalInfo" class="form-group">
+				<label for="effectiveInput">
+				  <span>電子郵件</span>
+					<input required id="effectiveInput" type="text" autocomplete="email" />
+				</label>
+				<label for="account">
+				  <span>帳號</span>
+					<input id="account" type="text" />
+				</label>
+				<label for="password">
+				  <span>密碼</span>
+					<input id="password" type="password" autocomplete="password" />
+				</label>
+				<label for="range">
+				  <span>範圍</span>
+					<input id="range" type="range" autocomplete="password" />
+				</label>
+
+				<label for="file">
+				  <input type="file" />
+				  <input type="color">
+				</label>
+
+				<input type="search" />
+
+				<input type="submit" value="submit">
+			</div>
+		</form>
+	</div>
+</body>
+<script src="main.js"></script>
+</html>

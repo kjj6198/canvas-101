@@ -1,5 +1,6 @@
 var gulp    = require('gulp');
 var connect = require('gulp-connect');
+var sass    = require('gulp-sass');
 
 gulp.task('connect', () => {
   connect.server({
@@ -14,7 +15,13 @@ gulp.task('livereload', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(['./**/*.*'], ['livereload']);
+  gulp.watch(['./effective-input/**/*.*'], ['livereload', 'sass']);
+});
+
+gulp.task('sass', () => {
+  return gulp.src('./effective-input/css/*.scss')
+		         .pipe(sass().on('error', sass.logError))
+		         .pipe(gulp.dest('./effective-input/dist'));
 })
 
 gulp.task('default', ['connect', 'watch']);

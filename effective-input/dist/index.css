@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/*
+練習 input 的 psesudo
+input:valid + label::after
+
+input:invalid + label::after
+
+input::-webkit-input-list-button
+
+input::-webkit-input-speech-button
+
+input::-webkit-textfield-decoration-container
+
+input::-webkit-calendar-picker-indicator
+
+input::-moz-placeholder
+
+input::-moz-focus-inner
+
+input::-ms-clear
+ */
+input {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px;
+  color: #aaa; }
+  input:focus {
+    outline: 1px solid #aaa; }
+
+input[type="search"] {
+  -webkit-appearance: none;
+  border: 1px solid #aaa; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  padding: 2px 0; }
+  input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #aaa;
+    border-radius: 3px; }
+  input[type="range"]::-webkit-slider-thumb {
+    color: #aaa; }
+
+.container {
+  width: 50%;
+  margin: 0 auto; }
