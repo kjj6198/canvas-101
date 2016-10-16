@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <canvas id="gravity" width="960" height="300"></canvas>
+</body>
+<script>
+  var colors = ['red', 'blue', 'green', 'yellow'];
+  function Ball(x, y, vx, vy, gravity) {
+  	this.x = x;
+  	this.y = y;
+  	this.vx = vx;
+  	this.vy = vy;
+  	this.radius = 15;
+  	this.gravity = gravity;
+  	this.elasicity = 0.9;
+  	this.color = colors[Math.floor(Math.random() * colors.length)];
+  }
+  
+  Ball.prototype.draw = function(ctx) {
+	  this.vy += this.gravity;
+	  if (this.y + this.radius > HEIGHT) {
+		  this.y = HEIGHT - this.radius;
+		  this.vy = -(this.vy) * .8;
+	  }
+	  this.x += this.vx;
+	  this.y += this.vy;
+
+	  ctx.fillStyle = this.color;
+	  ctx.beginPath();
+	  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+	  ctx.closePath();
+	  ctx.fill();	
+  }
+  
+  var ctx = document
+    .getElementById('gravity')
+    .getContext('2d');
+  var HEIGHT = ctx.canvas.height;
+  var WIDTH  = ctx.canvas.width;
+
+
+  function drawScreen() {
+  	ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.strokeStyle = '#333';
+    ctx.strokeRect(1, 1, WIDTH -2 , HEIGHT -2);
+
+    balls.forEach(function(ball) {
+    	ball.draw(ctx);
+    });
+	  requestAnimationFrame(drawScreen);
+  }
+
+  var balls = [];
+  for (i = 0; i < 50; i++) {
+	  var b = new Ball(Math.random() * 900, 20, Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 2 + 1);
+  	balls.push(b);
+  }
+
+  drawScreen();
+</script>
+</html>
