@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+  <canvas id="clock" width="960" height="300"></canvas>
+</body>
+<script>
+	var ctx = document.getElementById('clock').getContext('2d');
+	var WIDTH = ctx.canvas.width;
+	var HEIGHT = ctx.canvas.height;
+
+	function drawClockCircle(ctx) {
+		ctx.setTransform(1,0,0,1,0,0);
+		ctx.translate(WIDTH / 2, HEIGHT / 2);
+		ctx.strokeStyle = '#123';
+		ctx.arc(0, 0, 125, 0, Math.PI * 2, true);
+		ctx.stroke();
+		ctx.fillStyle = 'red';
+		ctx.save();
+
+		for(var i = 0; i < 60; i++) {
+
+			ctx.rotate((Math.PI / 180) * 6);
+			ctx.restore();
+			ctx.beginPath();
+			if (i % 5 === 0) {
+				ctx.fillRect(0 - 2.5, 0 - 125, 5, 40);
+			} else {
+				ctx.fillRect(0 - 1, 0 - 125, 2, 30);
+			}
+			ctx.closePath();
+		}
+	}
+
+	function drawClockNeedle(ctx) {
+		var date = new Date().getSeconds();
+		ctx.beginPath();
+		ctx.lineWidth = '3px';
+		ctx.lineCap = 'round';
+		ctx.moveTo(0,0);
+		ctx.rotate(Math.PI / 180 * date * 6);
+		ctx.stroke();
+		ctx.closePath();
+	}
+
+
+	function drawClock() {
+		drawClockCircle(ctx);
+		drawClockNeedle(ctx);
+	}
+	setInterval(drawClock, 1000);
+</script>
+</html>
