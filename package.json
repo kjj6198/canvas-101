@@ -13,5 +13,10 @@
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-sass": "^2.3.2"
+  },
+  "dependencies": {
+    "d3": "^4.2.7",
+    "save": "^2.3.0",
+    "three": "^0.81.2"
   }
 }

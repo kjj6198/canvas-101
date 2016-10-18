@@ -16,7 +16,7 @@
   	this.vy = vy;
   	this.radius = 15;
   	this.gravity = gravity;
-  	this.elasicity = 0.9;
+  	this.elasicity = 0.8;
   	this.color = colors[Math.floor(Math.random() * colors.length)];
   }
   
@@ -24,7 +24,7 @@
 	  this.vy += this.gravity;
 	  if (this.y + this.radius > HEIGHT) {
 		  this.y = HEIGHT - this.radius;
-		  this.vy = -(this.vy) * .8;
+		  this.vy = -(this.vy) * this.elasicity;
 	  }
 	  this.x += this.vx;
 	  this.y += this.vy;
@@ -56,8 +56,8 @@
   }
 
   var balls = [];
-  for (i = 0; i < 50; i++) {
-	  var b = new Ball(Math.random() * 900, 20, Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 2 + 1);
+  for (i = 0; i < 75; i++) {
+	  var b = new Ball(Math.random() * 900 + 10, 20, Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 2 + 1);
   	balls.push(b);
   }
 

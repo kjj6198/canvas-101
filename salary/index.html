@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+  <canvas id="salary" width="1200" height="900"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('salary');
+	var ctx    = canvas.getContext('2d');
+
+
+	function Ball(x, y, vx, vy, gravity) {
+		this.x = x;
+		this.y = y;
+		this.vx = vx;
+		this.vy = vy;
+		this.radius = 1;
+		this.gravity = gravity;
+	}
+	Ball.draw = function(ball) {
+		return ball.draw.call(ball, ctx);
+	}
+	Ball.prototype.draw = function(ctx) {
+		this.vy += this.gravity;
+
+		if (this.radius + this.y > ctx.canvas.height) {
+			this.vy = 0;
+			return false;
+		}
+		this.y += this.vy;
+		this.x += this.vx;
+		ctx.fillText('🍔', this.x, this.y);
+//		ctx.filleStyle = '#aaa';
+//		ctx.beginPath();
+//		ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+//		ctx.fill();
+//		ctx.closePath();
+		return true;
+	}
+  var salary = 1200000;
+	function drawScreen() {
+		ctx.strokeStyle = '#aaa';
+		ctx.strokeRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		var numbers = salary / 1000;
+		var cols = 100;
+		var height = Math.floor(numbers / 100);
+		var rows = numbers % 100;
+
+		for (var i = 1; i < height; i++) {
+			console.log(height, i);
+			if (i === height - 1) {
+				console.log(i);
+				for (var j = 1; j < rows; j++) {
+					var ball = new Ball(15 * j, 20 * i, 1, 1, 1);
+					ball.draw(ctx);
+				}
+			} else {
+				for (var j = 1; j < cols; j++) {
+					var ball = new Ball(15 * j, 20 * i, 1, 1, 1);
+					ball.draw(ctx);
+				}
+			}
+
+		}
+	}
+	drawScreen();
+</script>
+</html>

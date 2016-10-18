@@ -33,21 +33,26 @@
 			}
 			ctx.closePath();
 		}
+		ctx.restore();
 	}
 
 	function drawClockNeedle(ctx) {
 		var date = new Date().getSeconds();
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		ctx.translate(WIDTH / 2, HEIGHT / 2);
+
 		ctx.beginPath();
+		ctx.rotate(Math.PI / 180 * 6 * date);
 		ctx.lineWidth = '3px';
 		ctx.lineCap = 'round';
 		ctx.moveTo(0,0);
-		ctx.rotate(Math.PI / 180 * date * 6);
 		ctx.stroke();
 		ctx.closePath();
 	}
 
 
 	function drawClock() {
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		drawClockCircle(ctx);
 		drawClockNeedle(ctx);
 	}
